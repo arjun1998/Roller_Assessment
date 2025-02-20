@@ -41,7 +41,7 @@ Sub TransformData()
         
         If firstOccurrence = 1 And childRowNum = 1 And isMinor = 0 Then
             ' Create parent row
-            wsTarget.Cells(j, 1).Value = wsSource.Cells(i, 21).Value ' ParentSignedWaiverId
+            wsTarget.Cells(j, 1).Value = wsSource.Cells(i, 24).Value ' ParentSignedWaiverId
             wsTarget.Cells(j, 3).Value = wsSource.Cells(i, 9).Value ' FirstName
             wsTarget.Cells(j, 4).Value = wsSource.Cells(i, 11).Value ' LastName
             wsTarget.Cells(j, 5).Value = Format(wsSource.Cells(i, 14).Value, "MM/DD/YYYY") ' DateOfBirth
@@ -51,13 +51,14 @@ Sub TransformData()
             
             
             wsTarget.Cells(j, 8).Value = isMinor ' IsMinor for parent
-            wsTarget.Cells(j, 9).Value = Format(Date, "MM/DD/YYYY") ' CreatedDate (using BookingId as placeholder)
+            wsTarget.Cells(j, 9).Value = Date ' CreatedDate (using BookingId as placeholder)
+            wsTarget.Cells(j, 9).NumberFormat = "MM/DD/YYYY" ' CreatedDate Format
             wsTarget.Cells(j, 10).Value = DateAdd("yyyy", 1, wsTarget.Cells(j, 9).Value)
             wsTarget.Cells(j, 10).NumberFormat = "MM/DD/YYYY" ' ExpiryDate
             j = j + 1
             
             ' Create child row
-            wsTarget.Cells(j, 1).Value = wsSource.Cells(i, 21).Value ' ParentSignedWaiverId
+            wsTarget.Cells(j, 1).Value = wsSource.Cells(i, 24).Value ' ParentSignedWaiverId
             wsTarget.Cells(j, 3).Value = Split(wsSource.Cells(i, 1).Value, " ")(0) ' FirstName
             
             Dim nameParts As Variant
@@ -81,14 +82,15 @@ Sub TransformData()
             
             
             wsTarget.Cells(j, 8).Value = isMinor ' IsMinor for child
-            wsTarget.Cells(j, 9).Value = Format(Date, "MM/DD/YYYY") ' CreatedDate (using BookingId as placeholder)
+            wsTarget.Cells(j, 9).Value = Date ' CreatedDate (using BookingId as placeholder)
+            wsTarget.Cells(j, 9).NumberFormat = "MM/DD/YYYY" ' CreatedDate Format
             wsTarget.Cells(j, 10).Value = DateAdd("yyyy", 1, wsTarget.Cells(j, 9).Value)
             wsTarget.Cells(j, 10).NumberFormat = "MM/DD/YYYY" ' ExpiryDate
             j = j + 1
         
         ElseIf firstOccurrence = 1 And childRowNum = 1 And isMinor = 1 Then
             ' Create child row
-            wsTarget.Cells(j, 1).Value = wsSource.Cells(i, 21).Value ' ParentSignedWaiverId
+            wsTarget.Cells(j, 1).Value = wsSource.Cells(i, 24).Value ' ParentSignedWaiverId
             wsTarget.Cells(j, 3).Value = Split(wsSource.Cells(i, 1).Value, " ")(0) ' FirstName
             
             
@@ -112,7 +114,8 @@ Sub TransformData()
             
             
             wsTarget.Cells(j, 8).Value = isMinor ' IsMinor for child
-            wsTarget.Cells(j, 9).Value = Format(Date, "MM/DD/YYYY") ' CreatedDate (using BookingId as placeholder)
+            wsTarget.Cells(j, 9).Value = Date ' CreatedDate (using BookingId as placeholder)
+            wsTarget.Cells(j, 9).NumberFormat = "MM/DD/YYYY" ' CreatedDate Format
             wsTarget.Cells(j, 10).Value = DateAdd("yyyy", 1, wsTarget.Cells(j, 9).Value)
             wsTarget.Cells(j, 10).NumberFormat = "MM/DD/YYYY" ' ExpiryDate
             j = j + 1
@@ -120,7 +123,7 @@ Sub TransformData()
         
         ElseIf firstOccurrence = 0 And childRowNum = 2 Then
             ' Create only child row (no parent row)
-            wsTarget.Cells(j, 1).Value = wsSource.Cells(i, 21).Value ' ParentSignedWaiverId
+            wsTarget.Cells(j, 1).Value = wsSource.Cells(i, 24).Value ' ParentSignedWaiverId
             wsTarget.Cells(j, 3).Value = Split(wsSource.Cells(i, 1).Value, " ")(0) ' FirstName
             
 
@@ -143,7 +146,8 @@ Sub TransformData()
             
             
             wsTarget.Cells(j, 8).Value = isMinor ' IsMinor for child
-            wsTarget.Cells(j, 9).Value = Format(Date, "MM/DD/YYYY") ' CreatedDate (using BookingId as placeholder)
+            wsTarget.Cells(j, 9).Value = Date ' CreatedDate (using BookingId as placeholder)
+            wsTarget.Cells(j, 9).NumberFormat = "MM/DD/YYYY" ' CreatedDate Format
             wsTarget.Cells(j, 10).Value = DateAdd("yyyy", 1, wsTarget.Cells(j, 9).Value)
             wsTarget.Cells(j, 10).NumberFormat = "MM/DD/YYYY" ' ExpiryDate
             j = j + 1
